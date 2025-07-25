@@ -8,24 +8,24 @@
     <meta name="description" content="Portfolio of ajxv - Full-stack developer specializing in Python, Flutter, and JavaScript">
     <style>
         :root {
-            --primary-color: #6366f1;
-            --secondary-color: #64748b;
-            --accent-color: #8b5cf6;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #94a3b8;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-card: #ffffff;
-            --border-color: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-            --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            --gradient-warm: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-cool: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --primary-color: #007AFF;
+            --secondary-color: #8E8E93;
+            --accent-color: #007AFF;
+            --success-color: #34C759;
+            --warning-color: #FF9500;
+            --text-primary: #1D1D1F;
+            --text-secondary: #6E6E73;
+            --text-muted: #8E8E93;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F2F7;
+            --bg-card: #FFFFFF;
+            --border-color: #D1D1D6;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --gradient: linear-gradient(180deg, #FFFFFF 0%, #F2F2F7 100%);
+            --gradient-warm: linear-gradient(180deg, #FFFFFF 0%, #F2F2F7 100%);
+            --gradient-cool: linear-gradient(180deg, #FFFFFF 0%, #F2F2F7 100%);
         }
 
         * {
@@ -35,10 +35,11 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             background-color: var(--bg-primary);
+            font-weight: 400;
         }
 
         .container {
@@ -49,8 +50,10 @@
 
         /* Header */
         header {
-            background: var(--bg-primary);
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
             position: fixed;
             top: 0;
             left: 0;
@@ -69,8 +72,8 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-weight: 600;
+            color: var(--text-primary);
             text-decoration: none;
         }
 
@@ -82,8 +85,8 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
+            color: var(--text-primary);
+            font-weight: 400;
             transition: color 0.3s ease;
         }
 
@@ -93,9 +96,9 @@
 
         /* Hero Section */
         .hero {
-            background: var(--gradient);
-            color: white;
-            padding: 8rem 0 6rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 10rem 0 8rem;
             text-align: center;
             margin-top: 70px;
             position: relative;
@@ -103,14 +106,7 @@
         }
 
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="stars" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.3"/><circle cx="5" cy="5" r="0.5" fill="white" opacity="0.2"/><circle cx="35" cy="15" r="0.5" fill="white" opacity="0.2"/></pattern></defs><rect width="200" height="200" fill="url(%23stars)"/></svg>');
-            animation: twinkle 4s ease-in-out infinite;
+            display: none;
         }
 
         @keyframes twinkle {
@@ -124,12 +120,13 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             opacity: 0;
             animation: fadeInUp 1s ease forwards;
             position: relative;
+            letter-spacing: -0.02em;
         }
 
         .hero h1::after {
@@ -146,68 +143,58 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: var(--text-secondary);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             opacity: 0;
             animation: fadeInUp 1s ease 0.3s forwards;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
         .cta-button {
             display: inline-block;
-            background: white;
-            color: var(--primary-color);
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.3s ease;
             opacity: 0;
             animation: fadeInUp 1s ease 0.6s forwards;
             position: relative;
             overflow: hidden;
+            font-size: 1.1rem;
         }
 
         .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s ease;
+            display: none;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+            background: #0056CC;
         }
 
         .cta-button:hover::before {
-            left: 100%;
+            display: none;
         }
 
         /* About Section */
         .about {
-            padding: 6rem 0;
+            padding: 8rem 0;
             background: var(--bg-secondary);
             position: relative;
             overflow: hidden;
         }
 
         .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23f1f5f9" opacity="0.5"/><circle cx="75" cy="75" r="1" fill="%23e2e8f0" opacity="0.3"/><circle cx="50" cy="10" r="0.5" fill="%23cbd5e1" opacity="0.4"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            pointer-events: none;
+            display: none;
         }
 
         .about-container {
@@ -227,28 +214,24 @@
         }
 
         .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 3rem;
+            margin-bottom: 2rem;
             color: var(--text-primary);
             position: relative;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .about h2::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
+            display: none;
         }
 
         .about-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            font-weight: 400;
         }
 
         .stats-grid {
@@ -260,11 +243,12 @@
 
         .stat-item {
             text-align: center;
-            padding: 1rem;
+            padding: 2rem 1.5rem;
             background: var(--bg-card);
-            border-radius: 12px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
         }
 
         .stat-item:hover {
@@ -273,12 +257,9 @@
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
 
@@ -297,11 +278,11 @@
         .tech-item {
             background: var(--bg-card);
             color: var(--text-primary);
-            padding: 0.75rem 1.25rem;
-            border-radius: 25px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border: 2px solid transparent;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
@@ -309,18 +290,11 @@
         }
 
         .tech-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            transition: left 0.3s ease;
-            z-index: -1;
+            display: none;
         }
 
         .tech-item:hover {
+            background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
             transform: translateY(-2px);
@@ -328,7 +302,7 @@
         }
 
         .tech-item:hover::before {
-            left: 0;
+            display: none;
         }
 
         .about-image-section {
@@ -358,7 +332,7 @@
         .profile-image {
             width: 150px;
             height: 150px;
-            background: var(--gradient);
+            background: var(--primary-color);
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             display: flex;
@@ -372,15 +346,7 @@
         }
 
         .profile-image::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
+            display: none;
         }
 
         @keyframes shimmer {
@@ -477,27 +443,23 @@
 
         /* Projects Section */
         .projects {
-            padding: 6rem 0;
+            padding: 8rem 0;
             position: relative;
+            background: var(--bg-primary);
         }
 
         .projects::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(99, 102, 241, 0.05) 50%, transparent 70%);
-            pointer-events: none;
+            display: none;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 3rem;
+            margin-bottom: 4rem;
             color: var(--text-primary);
             position: relative;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .section-title::before {
@@ -505,7 +467,6 @@
             display: block;
             font-size: 2rem;
             margin-bottom: 1rem;
-            animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
@@ -526,7 +487,7 @@
         .project-card {
             background: var(--bg-card);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 2.5rem;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
             border: 1px solid var(--border-color);
@@ -535,15 +496,7 @@
         }
 
         .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            display: none;
         }
 
         .project-card:hover {
@@ -552,7 +505,7 @@
         }
 
         .project-card:hover::before {
-            transform: scaleX(1);
+            display: none;
         }
 
         .project-header {
@@ -646,31 +599,25 @@
 
         /* Contact Section */
         .contact {
-            background: var(--gradient);
+            background: var(--text-primary);
             color: white;
-            padding: 6rem 0;
+            padding: 8rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
         .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon fill="rgba(255,255,255,0.1)" points="50,0 100,50 50,100 0,50"/></svg>');
-            background-size: 200px;
-            animation: float 8s ease-in-out infinite;
+            display: none;
         }
 
         .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
             position: relative;
             z-index: 1;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .contact h2::before {
@@ -678,7 +625,6 @@
             display: block;
             font-size: 3rem;
             margin-bottom: 1rem;
-            animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
@@ -687,11 +633,12 @@
         }
 
         .contact p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
             opacity: 0.9;
             position: relative;
             z-index: 1;
+            font-weight: 400;
         }
 
         .social-links {
@@ -706,20 +653,20 @@
             color: white;
             text-decoration: none;
             font-size: 1.2rem;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.3s ease;
-            padding: 1rem 2rem;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
             backdrop-filter: blur(10px);
             background: rgba(255,255,255,0.1);
         }
 
         .social-link:hover {
-            transform: scale(1.1) translateY(-3px);
-            border-color: white;
+            transform: scale(1.05) translateY(-3px);
+            border-color: rgba(255,255,255,0.6);
             background: rgba(255,255,255,0.2);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
 
         /* Footer */
