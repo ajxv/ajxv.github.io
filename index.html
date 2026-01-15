@@ -1,1261 +1,456 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ajxv - Developer Portfolio</title>
-    <meta name="description" content="Portfolio of ajxv - Full-stack developer specializing in Python, Flutter, and JavaScript">
+    <title>ajxv | Developer Portfolio</title>
+    <meta name="description" content="Portfolio of ajxv - Developer, Open Source Contributor, and Potato Architect.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+
     <style>
         :root {
-            --primary-color: #007AFF;
-            --secondary-color: #8E8E93;
-            --accent-color: #007AFF;
-            --success-color: #34C759;
-            --warning-color: #FF9500;
-            --text-primary: #1D1D1F;
-            --text-secondary: #6E6E73;
-            --text-muted: #8E8E93;
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F2F2F7;
-            --bg-card: #FFFFFF;
-            --border-color: #D1D1D6;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --gradient: linear-gradient(180deg, #FFFFFF 0%, #F2F2F7 100%);
-            --gradient-warm: linear-gradient(180deg, #FFFFFF 0%, #F2F2F7 100%);
-            --gradient-cool: linear-gradient(180deg, #FFFFFF 0%, #F2F2F7 100%);
+            --bg-color: #0a0a0a;
+            --card-bg: #171717;
+            --text-main: #ededed;
+            --text-muted: #a1a1a1;
+            --accent: #3b82f6; /* Blue for pro */
+            --accent-glow: rgba(59, 130, 246, 0.2);
+            --border: #333;
+            --font-main: 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Fun Mode Variables */
+        body.fun-mode {
+            --accent: #eab308; /* Potato Yellow */
+            --accent-glow: rgba(234, 179, 8, 0.3);
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>'), auto;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
             line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-            font-weight: 400;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 2rem;
         }
 
-        /* Header */
         header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-        }
-
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding-bottom: 3rem;
         }
 
         .logo {
+            font-weight: 800;
             font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
+            letter-spacing: -1px;
         }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 400;
+        
+        /* Logo Logic: 'j' is normal in pro mode, accent in fun mode */
+        #logo-j {
+            color: var(--text-main);
             transition: color 0.3s ease;
         }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
+        
+        body.fun-mode #logo-j {
+            color: var(--accent);
         }
 
-        /* Hero Section */
-        .hero {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            padding: 10rem 0 8rem;
-            text-align: center;
-            margin-top: 70px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            display: none;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-            position: relative;
-            letter-spacing: -0.02em;
-        }
-
-        .hero h1::after {
-            content: '👨‍💻';
-            display: inline-block;
-            margin-left: 1rem;
-            animation: wave 2s ease-in-out infinite;
-        }
-
-        @keyframes wave {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(20deg); }
-            75% { transform: rotate(-10deg); }
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-            font-weight: 400;
-            line-height: 1.5;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
-            position: relative;
-            overflow: hidden;
-            font-size: 1.1rem;
-        }
-
-        .cta-button::before {
-            display: none;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
-            background: #0056CC;
-        }
-
-        .cta-button:hover::before {
-            display: none;
-        }
-
-        /* About Section */
-        .about {
-            padding: 8rem 0;
-            background: var(--bg-secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about::before {
-            display: none;
-        }
-
-        .about-container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text-section {
-            position: relative;
-        }
-
-        .about h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-            position: relative;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .about h2::after {
-            display: none;
-        }
-
-        .about-text {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: var(--bg-card);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .tech-stack {
+        /* The Switch */
+        .mode-toggle {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .tech-item {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            padding: 0.75rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
+            align-items: center;
+            gap: 10px;
+            background: var(--card-bg);
+            padding: 8px 16px;
+            border-radius: 99px;
+            border: 1px solid var(--border);
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tech-item::before {
-            display: none;
-        }
-
-        .tech-item:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .tech-item:hover::before {
-            display: none;
-        }
-
-        .about-image-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .profile-card {
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: var(--shadow-xl);
-            text-align: center;
-            position: relative;
-            max-width: 350px;
-            width: 100%;
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-card:hover {
-            transform: perspective(1000px) rotateY(0deg) translateY(-10px);
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            font-weight: 700;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-image::before {
-            display: none;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .profile-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-title {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .profile-social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
+            font-size: 0.85rem;
             font-weight: 600;
+            user-select: none;
         }
-
-        .social-icon:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--gradient);
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 60px;
-            height: 60px;
-            top: 70%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .floating-element:nth-child(3) {
+        
+        .mode-toggle:hover { border-color: var(--accent); }
+        .toggle-knob {
             width: 40px;
-            height: 40px;
-            top: 30%;
-            right: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 8rem 0;
-            position: relative;
-            background: var(--bg-primary);
-        }
-
-        .projects::before {
-            display: none;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 4rem;
-            color: var(--text-primary);
-            position: relative;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .section-title::before {
-            content: '🚀';
-            display: block;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        .projects-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 3rem;
-            position: relative;
-            z-index: 1;
-            justify-content: center;
-        }
-
-        .project-card {
-            flex: 0 0 auto;
-            width: 350px;
-            max-width: 100%;
-        }
-
-        .project-card {
-            flex: 0 0 auto;
-            width: 350px;
-            max-width: 100%;
-            background: var(--bg-card);
+            height: 20px;
+            background: #333;
             border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        .toggle-knob::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+        body.fun-mode .toggle-knob::after { transform: translateX(20px); background: var(--accent); }
+
+        /* Bento Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 1.5rem;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .project-card::before {
-            display: none;
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-5px);
+            z-index: 2;
         }
 
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
+        /* Card Layout Assignments */
+        .hero { grid-column: span 2; grid-row: span 2; justify-content: center; }
+        .stat-card { grid-column: span 1; grid-row: span 1; align-items: center; justify-content: center; text-align: center; }
+        .card-redis { grid-column: span 2; grid-row: span 1; }
+        .card-netspeed { grid-column: span 1; grid-row: span 1; }
+        .card-rfid { grid-column: span 1; grid-row: span 1; }
+        .card-nonsensify { grid-column: span 2; grid-row: span 1; }
+        .card-nekolist { grid-column: span 4; grid-row: span 1; }
+
+
+        /* Typography & Components */
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .project-card:hover::before {
-            display: none;
-        }
+        .hero p { color: var(--text-muted); font-size: 1.1rem; }
+
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--accent); }
+        .stat-label { font-size: 0.9rem; color: var(--text-muted); }
 
         .project-header {
             display: flex;
             justify-content: space-between;
-            align-items: start;
+            align-items: flex-start;
             margin-bottom: 1rem;
         }
-
-        .project-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .project-title::before {
-            content: '📦';
-            font-size: 1rem;
-        }
-
-        .project-stars {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            color: var(--warning-color);
-            font-size: 0.875rem;
-            font-weight: 600;
-            background: rgba(245, 158, 11, 0.1);
-            padding: 0.25rem 0.75rem;
+        
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
             border-radius: 12px;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 0.375rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .tech-tag:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            border: 2px solid transparent;
-        }
-
-        .project-link:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            transform: translateX(4px);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--text-primary);
-            color: white;
-            padding: 8rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact::before {
-            display: none;
-        }
-
-        .contact h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .contact h2::before {
-            content: '💬';
-            display: block;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .contact p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-            font-weight: 400;
-        }
-
-        .social-links {
-            display: flex;
             justify-content: center;
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
+            font-size: 1.2rem;
+        }
+
+        .project-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .project-desc { font-size: 0.9rem; color: var(--text-muted); flex-grow: 1; }
+        
+        .tags { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+        .tag {
+            font-family: var(--font-code);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            color: var(--text-muted);
         }
 
         .social-link {
-            color: white;
             text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 1rem 1.3rem 0.5rem 1.3rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.1);
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        .social-link:hover { color: var(--accent); }
+
+        .code-decor {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            opacity: 0.3;
+            text-align: right;
+            pointer-events: none;
         }
 
-        .social-link:hover {
-            transform: scale(1.05) translateY(-3px);
-            border-color: rgba(255,255,255,0.6);
-            background: rgba(255,255,255,0.2);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-primary);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-                padding: 0 1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .profile-card {
-                transform: none;
-                max-width: 300px;
-            }
-
-            .profile-card:hover {
-                transform: translateY(-5px);
-            }
-
-            .projects-grid {
+            .grid { 
+                display: flex;
                 flex-direction: column;
-                align-items: center;
+                gap: 1.5rem;
             }
-
-            .project-card {
+            .card { 
                 width: 100%;
-                max-width: 400px;
+                min-height: auto;
             }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .social-links {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-
-            .social-link {
-                width: 200px;
-            }
-
-            .floating-element {
-                display: none;
-            }
+            .hero h1 { font-size: 2.2rem; }
         }
 
-        @media (max-width: 480px) {
-            .hero {
-                padding: 6rem 0 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .project-card {
-                padding: 1.5rem;
-            }
-
-            .profile-image {
-                width: 120px;
-                height: 120px;
-                font-size: 2.5rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 0.5rem;
-            }
-
-            .stat-item {
-                padding: 0.75rem;
-            }
-
-            .stat-number {
-                font-size: 1.5rem;
-            }
+        /* Fun Mode Specific Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
+        
+        body.fun-mode .hero h1 {
+            background: linear-gradient(to right, #eab308, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        body.fun-mode .project-icon { animation: float 3s ease-in-out infinite; }
     </style>
 </head>
-
 <body>
-    <!-- Header -->
+
+<div class="container">
     <header>
-        <nav>
-            <a href="#" class="logo">ajxv</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="logo">a<span id="logo-j">j</span>xv</div>
+        <div class="mode-toggle" onclick="toggleMode()">
+            <span id="mode-label">Pro Mode</span>
+            <div class="toggle-knob"></div>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Hi, I'm ajxv</h1>
-                <p>Full-stack developer passionate about creating innovative solutions with Python, Flutter, and JavaScript</p>
-                <a href="#projects" class="cta-button">View My Work</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="floating-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-        </div>
-        <div class="container about-container">
-            <div class="about-content">
-                <div class="about-text-section">
-                    <h2>About Me</h2>
-                    <p class="about-text">
-                        I'm a passionate developer who enjoys building practical solutions to real-world problems. 
-                        From mobile applications to automation tools, I love exploring different technologies and 
-                        creating projects that make a difference. ✨
-                    </p>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">6+</div>
-                            <div class="stat-label">Projects</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">3+</div>
-                            <div class="stat-label">Languages</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">28</div>
-                            <div class="stat-label">GitHub ⭐</div>
-                        </div>
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-item">🐍 Python</span>
-                        <span class="tech-item">📱 Flutter</span>
-                        <span class="tech-item">⚡ JavaScript</span>
-                        <span class="tech-item">☕ Java</span>
-                        <span class="tech-item">🎯 Dart</span>
-                        <span class="tech-item">🎨 HTML/CSS</span>
-                        <span class="tech-item">🔧 Git</span>
-                    </div>
-                </div>
-                
-                <div class="about-image-section">
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            AJ
-                        </div>
-                        <div class="profile-name">ajxv</div>
-                        <div class="profile-title">Full-Stack Developer</div>
-                        <div class="profile-social">
-                            <a href="https://github.com/ajxv" class="social-icon" target="_blank">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+    <div class="grid">
+        <div class="card hero">
+            <div>
+                <h1 id="hero-title">Building digital experiences.</h1>
+                <p id="hero-subtitle">Developer, Open Source Contributor & Tech Enthusiast.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="https://github.com/ajxv" class="social-link"><i data-feather="github"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                
-                <!-- NekoList Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div>
-                            <h3 class="project-title">NekoList</h3>
-                            <div class="project-stars">⭐ 16 stars</div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Yet another MAL client - An unofficial MyAnimelist client using Flutter with a clean, modern interface for tracking and discovering anime.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Flutter</span>
-                        <span class="tech-tag">Dart</span>
-                        <span class="tech-tag">MyAnimeList API</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/ajxv/NekoList" class="project-link" target="_blank">
-                            View Code →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- WhatsApp Automation Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div>
-                            <h3 class="project-title">WhatsApp Selenium Automation</h3>
-                            <div class="project-stars">⭐ 6 stars</div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        WhatsApp bulk messaging and messaging automation using Python and Selenium (No API required). Perfect for automated messaging workflows.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Selenium</span>
-                        <span class="tech-tag">Automation</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/ajxv/Whatsapp-Selenium-Automation" class="project-link" target="_blank">
-                            View Code →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Potato Grid Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div>
-                            <h3 class="project-title">Potato Grid</h3>
-                            <div class="project-stars">⭐ 5 stars</div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Grid trading bot using Python for cryptocurrency trading. Implements automated grid trading strategies for consistent profit generation.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Trading Bot</span>
-                        <span class="tech-tag">Cryptocurrency</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/ajxv/potato-grid" class="project-link" target="_blank">
-                            View Code →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- RTSTT Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div>
-                            <h3 class="project-title">RTSTT</h3>
-                            <div class="project-stars">⭐ 1 star</div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Real-time speech to text transcription using OpenAI Whisper. Provides live transcription capabilities with high accuracy.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">OpenAI Whisper</span>
-                        <span class="tech-tag">Speech Recognition</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/ajxv/rtstt" class="project-link" target="_blank">
-                            View Code →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- RFID Library Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div>
-                            <h3 class="project-title">RRHFOEM04 Library</h3>
-                            <div class="project-stars">⭐ 1 star</div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Python Library for interfacing with the RRHFOEM04 RFID Reader. Simplifies RFID card reading and NFC operations.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">RFID</span>
-                        <span class="tech-tag">NFC</span>
-                        <span class="tech-tag">Hardware</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/ajxv/rrhfoem04-lib" class="project-link" target="_blank">
-                            View Code →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Network Speed Monitor Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div>
-                            <h3 class="project-title">Network Speed Monitor</h3>
-                            <div class="project-stars">⭐ 0 stars</div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Ubuntu GNOME extension to display current network speed on the top bar. Available on GNOME Extensions website.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">GNOME</span>
-                        <span class="tech-tag">Linux</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/ajxv/netspeed-monitor" class="project-link" target="_blank">
-                            View Code →
-                        </a>
-                        <a href="https://extensions.gnome.org/extension/7565/network-speed-monitor/" class="project-link" target="_blank">
-                            Live Demo →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- nonsensify Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div>
-                            <h3 class="project-title">nonsensify</h3>
-                            <div class="project-stars">⭐ 0 stars</div>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        VS Code extension that takes your carefully named variables and gives them the silly, nonsensical names they truly deserve. Perfect for code obfuscation or adding humor to your codebase.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">VS Code Extension</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/ajxv/nonsensify" class="project-link" target="_blank">
-                            View Code →
-                        </a>
-                        <a href="https://marketplace.visualstudio.com/items?itemName=ajxv.nonsensify" class="project-link" target="_blank">
-                            VS Code Marketplace →
-                        </a>
-                    </div>
-                </div>
-
+            <div class="code-decor" id="hero-code">
+                git commit -m "initial success"
             </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Let's Connect</h2>
-            <p>Interested in collaborating or have questions about my projects?</p>
-            <div class="social-links">
-                <a href="https://github.com/ajxv" class="social-link" target="_blank" title="GitHub">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
+        <div class="card stat-card">
+            <div class="stat-number" id="stat-1-num">28+</div>
+            <div class="stat-label" id="stat-1-label">Stars Earned</div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-number" id="stat-2-num">6</div>
+            <div class="stat-label" id="stat-2-label">Achievements</div>
+        </div>
+
+        <div class="card card-redis">
+            <div class="project-header">
+                <div class="project-icon">🦀</div>
+                <a href="https://github.com/ajxv/redis-tui" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+            </div>
+            <h3 class="project-title" id="p1-title">redis-tui</h3>
+            <p class="project-desc" id="p1-desc">A powerful Terminal User Interface for Redis built with Go and Bubble Tea.</p>
+            <div class="tags">
+                <span class="tag">Go</span>
+                <span class="tag">Bubble Tea</span>
+                <span class="tag">Redis</span>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 ajxv. Built with passion and clean code.</p>
+        <div class="card card-netspeed">
+            <div class="project-header">
+                <div class="project-icon">⚡</div>
+                <a href="https://github.com/ajxv/netspeed-monitor" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+            </div>
+            <h3 class="project-title" id="p2-title">NetSpeed Monitor</h3>
+            <p class="project-desc" id="p2-desc">Ubuntu GNOME extension for real-time network speed monitoring.</p>
+            <div class="tags">
+                <span class="tag">JS</span>
+                <span class="tag">GNOME</span>
+            </div>
         </div>
+
+        <div class="card card-rfid">
+            <div class="project-header">
+                <div class="project-icon">📡</div>
+                <a href="https://github.com/ajxv/rrhfoem04-lib" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+            </div>
+            <h3 class="project-title" id="p3-title">rrhfoem04-lib</h3>
+            <p class="project-desc" id="p3-desc">Python library for interfacing with the RRHFOEM04 RFID Reader.</p>
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Hardware</span>
+            </div>
+        </div>
+
+        <div class="card card-nonsensify">
+            <div class="project-header">
+                <div class="project-icon">👾</div>
+                <a href="https://github.com/ajxv/nonsensify" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+            </div>
+            <h3 class="project-title" id="p4-title">nonsensify</h3>
+            <p class="project-desc" id="p4-desc">VS Code extension that renames variables to nonsensical words. Chaos ensued.</p>
+            <div class="tags">
+                <span class="tag">TypeScript</span>
+                <span class="tag">VS Code</span>
+            </div>
+        </div>
+
+        <div class="card card-nekolist">
+            <div class="project-header">
+                <div class="project-icon">😺</div>
+                <a href="https://github.com/ajxv/NekoList" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+            </div>
+            <h3 class="project-title" id="p5-title">NekoList</h3>
+            <p class="project-desc" id="p5-desc">A feature-rich unofficial MyAnimeList client built with Flutter for seamless tracking.</p>
+            <div class="tags">
+                <span class="tag">Dart</span>
+                <span class="tag">Flutter</span>
+                <span class="tag">Mobile</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer style="margin-top: 4rem; text-align: center; color: var(--text-muted); padding-bottom: 2rem;">
+        <p class="font-code" style="font-size: 0.8rem;">&copy; <span id="year"></span> ajxv. Built with potatoes and code.</p>
     </footer>
+</div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<script>
+    feather.replace();
+    document.getElementById('year').innerText = new Date().getFullYear();
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'var(--bg-primary)';
-                header.style.backdropFilter = 'none';
-            }
-        });
+    let isFunMode = false;
+    
+    // Pro Content
+    const proContent = {
+        title: "Building digital experiences.",
+        subtitle: "Developer, Open Source Contributor & Tech Enthusiast.",
+        codeDecor: 'git commit -m "initial success"',
+        stat1Num: "28+",
+        stat1Label: "Stars Earned",
+        stat2Num: "6",
+        stat2Label: "Achievements",
+        p1Title: "redis-tui",
+        p1Desc: "A powerful Terminal User Interface for Redis built with Go and Bubble Tea.",
+        p2Title: "NetSpeed Monitor",
+        p2Desc: "Ubuntu GNOME extension for real-time network speed monitoring.",
+        p3Title: "rrhfoem04-lib",
+        p3Desc: "Python library for interfacing with the RRHFOEM04 RFID Reader.",
+        p4Title: "nonsensify",
+        p4Desc: "VS Code extension that renames variables to nonsensical words. Chaos ensued.",
+        p5Title: "NekoList",
+        p5Desc: "A feature-rich unofficial MyAnimeList client built with Flutter for seamless tracking."
+    };
 
-        // Animated counter for stats
-        function animateValue(element, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const value = Math.floor(progress * (end - start) + start);
-                element.innerHTML = value + (element.dataset.suffix || '');
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
+    // Fun Content
+    const funContent = {
+        title: "Compiling potatoes into logic.",
+        subtitle: "Professional Googler | Stack Overflow Copy-Paster | \"It works on my machine\"",
+        codeDecor: 'git commit -m "it works!! (maybe)"',
+        stat1Num: "28+",
+        stat1Label: "Validation Points",
+        stat2Num: "YOLO",
+        stat2Label: "Certified",
+        p1Title: "Redis? I hardly know her.",
+        p1Desc: "A TUI that makes Redis look cool. It definitely doesn't crash... mostly.",
+        p2Title: "Is my internet slow?",
+        p2Desc: "No, it's just the server. Or maybe your ISP hates you.",
+        p3Title: "Beep Boop",
+        p3Desc: "Stealing... I mean, legitimately reading RFID cards for science.",
+        p4Title: "var thing = 'what?'",
+        p4Desc: "I made this because naming variables 'data1' and 'data2' was getting too professional.",
+        p5Title: "Weeb Central",
+        p5Desc: "The only app you need to track how much time you've wasted on anime."
+    };
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('stat-number')) {
-                        const finalValue = parseInt(entry.target.textContent);
-                        entry.target.dataset.suffix = entry.target.textContent.replace(/\d+/g, '');
-                        animateValue(entry.target, 0, finalValue, 2000);
-                        observer.unobserve(entry.target);
-                    }
-                    
-                    if (entry.target.classList.contains('project-card')) {
-                        entry.target.style.opacity = '0';
-                        entry.target.style.transform = 'translateY(20px)';
-                        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                        
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, 100);
-                        observer.unobserve(entry.target);
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements when DOM loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Observe stat numbers
-            document.querySelectorAll('.stat-number').forEach(stat => {
-                observer.observe(stat);
-            });
-            
-            // Observe project cards
-            document.querySelectorAll('.project-card').forEach(card => {
-                observer.observe(card);
-            });
-
-            // Add click effects to tech items
-            document.querySelectorAll('.tech-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 150);
-                });
-            });
-
-            // Add sparkle effect on profile image click
-            document.querySelector('.profile-image').addEventListener('click', function() {
-                createSparkles(this);
-            });
-        });
-
-        // Create sparkle effect
-        function createSparkles(element) {
-            for (let i = 0; i < 6; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.innerHTML = '✨';
-                sparkle.style.position = 'absolute';
-                sparkle.style.pointerEvents = 'none';
-                sparkle.style.fontSize = '20px';
-                sparkle.style.zIndex = '1000';
-                
-                const rect = element.getBoundingClientRect();
-                sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
-                sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
-                
-                document.body.appendChild(sparkle);
-                
-                sparkle.animate([
-                    { transform: 'translateY(0) scale(1)', opacity: 1 },
-                    { transform: 'translateY(-50px) scale(0)', opacity: 0 }
-                ], {
-                    duration: 1000,
-                    easing: 'ease-out'
-                }).onfinish = () => sparkle.remove();
-            }
-        }
-
-        // Add typing effect to hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Easter egg: Konami code
-        let konamiCode = [];
-        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+    function toggleMode() {
+        isFunMode = !isFunMode;
+        const body = document.body;
+        const label = document.getElementById('mode-label');
         
-        document.addEventListener('keydown', function(e) {
-            konamiCode.push(e.keyCode);
-            if (konamiCode.length > 10) {
-                konamiCode.shift();
-            }
+        // Define IDs to update
+        const elements = [
+            { id: 'hero-title', prop: 'title' },
+            { id: 'hero-subtitle', prop: 'subtitle' },
+            { id: 'hero-code', prop: 'codeDecor' },
+            { id: 'stat-1-num', prop: 'stat1Num' },
+            { id: 'stat-1-label', prop: 'stat1Label' },
+            { id: 'stat-2-num', prop: 'stat2Num' },
+            { id: 'stat-2-label', prop: 'stat2Label' },
+            { id: 'p1-title', prop: 'p1Title' },
+            { id: 'p1-desc', prop: 'p1Desc' },
+            { id: 'p2-title', prop: 'p2Title' },
+            { id: 'p2-desc', prop: 'p2Desc' },
+            { id: 'p3-title', prop: 'p3Title' },
+            { id: 'p3-desc', prop: 'p3Desc' },
+            { id: 'p4-title', prop: 'p4Title' },
+            { id: 'p4-desc', prop: 'p4Desc' },
+            { id: 'p5-title', prop: 'p5Title' },
+            { id: 'p5-desc', prop: 'p5Desc' }
+        ];
+
+        if (isFunMode) {
+            body.classList.add('fun-mode');
+            label.innerText = "Fun Mode";
             
-            if (konamiCode.join(',') === konamiSequence.join(',')) {
-                document.body.style.animation = 'rainbow 2s infinite';
-                setTimeout(() => {
-                    document.body.style.animation = '';
-                }, 4000);
-                konamiCode = [];
-            }
-        });
-    </script>
+            elements.forEach(el => {
+                document.getElementById(el.id).innerText = funContent[el.prop];
+            });
 
-    <style>
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
+            // Easter egg: change icons to potatoes
+            document.querySelectorAll('.project-icon').forEach(icon => {
+                if(!icon.dataset.original) icon.dataset.original = icon.innerText;
+                icon.innerText = "🥔";
+            });
+
+        } else {
+            body.classList.remove('fun-mode');
+            label.innerText = "Pro Mode";
+            
+            elements.forEach(el => {
+                document.getElementById(el.id).innerText = proContent[el.prop];
+            });
+
+            // Revert Icons
+            document.querySelectorAll('.project-icon').forEach(icon => {
+                if(icon.dataset.original) icon.innerText = icon.dataset.original;
+            });
         }
-    </style>
+    }
+</script>
 </body>
-
 </html>
