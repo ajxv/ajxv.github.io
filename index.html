@@ -62,7 +62,6 @@
             letter-spacing: -1px;
         }
         
-        /* Logo Logic: 'j' is normal in pro mode, accent in fun mode */
         #logo-j {
             color: var(--text-main);
             transition: color 0.3s ease;
@@ -190,6 +189,14 @@
             background: rgba(255,255,255,0.05);
             border-radius: 6px;
             color: var(--text-muted);
+            cursor: default;
+            transition: all 0.2s ease;
+        }
+        
+        .tag:hover {
+            background: rgba(255,255,255,0.15);
+            transform: scale(1.05);
+            color: var(--text-main);
         }
 
         .social-link {
@@ -257,7 +264,7 @@
                 <h1 id="hero-title">Building digital experiences.</h1>
                 <p id="hero-subtitle">Developer, Open Source Contributor & Tech Enthusiast.</p>
                 <div style="margin-top: 2rem;">
-                    <a href="https://github.com/ajxv" class="social-link"><i data-feather="github"></i></a>
+                    <a href="https://github.com/ajxv" class="social-link" target="_blank" rel="noopener noreferrer"><i data-feather="github"></i></a>
                 </div>
             </div>
             <div class="code-decor" id="hero-code">
@@ -277,8 +284,8 @@
 
         <div class="card card-redis">
             <div class="project-header">
-                <div class="project-icon">🦀</div>
-                <a href="https://github.com/ajxv/redis-tui" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+                <div class="project-icon" id="p1-icon">⛃</div>
+                <a href="https://github.com/ajxv/redis-tui" target="_blank" rel="noopener noreferrer"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
             </div>
             <h3 class="project-title" id="p1-title">redis-tui</h3>
             <p class="project-desc" id="p1-desc">A powerful Terminal User Interface for Redis built with Go and Bubble Tea.</p>
@@ -291,10 +298,10 @@
 
         <div class="card card-netspeed">
             <div class="project-header">
-                <div class="project-icon">⚡</div>
-                <a href="https://github.com/ajxv/netspeed-monitor" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+                <div class="project-icon" id="p2-icon">⏲</div>
+                <a href="https://github.com/ajxv/netspeed-monitor" target="_blank" rel="noopener noreferrer"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
             </div>
-            <h3 class="project-title" id="p2-title">NetSpeed Monitor</h3>
+            <h3 class="project-title" id="p2-title">netspeed-monitor</h3>
             <p class="project-desc" id="p2-desc">Ubuntu GNOME extension for real-time network speed monitoring.</p>
             <div class="tags">
                 <span class="tag">JS</span>
@@ -304,8 +311,8 @@
 
         <div class="card card-rfid">
             <div class="project-header">
-                <div class="project-icon">📡</div>
-                <a href="https://github.com/ajxv/rrhfoem04-lib" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+                <div class="project-icon" id="p3-icon">၊၊||၊</div>
+                <a href="https://github.com/ajxv/rrhfoem04-lib" target="_blank" rel="noopener noreferrer"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
             </div>
             <h3 class="project-title" id="p3-title">rrhfoem04-lib</h3>
             <p class="project-desc" id="p3-desc">Python library for interfacing with the RRHFOEM04 RFID Reader.</p>
@@ -317,8 +324,8 @@
 
         <div class="card card-nonsensify">
             <div class="project-header">
-                <div class="project-icon">👾</div>
-                <a href="https://github.com/ajxv/nonsensify" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+                <div class="project-icon" id="p4-icon">🗘</div>
+                <a href="https://github.com/ajxv/nonsensify" target="_blank" rel="noopener noreferrer"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
             </div>
             <h3 class="project-title" id="p4-title">nonsensify</h3>
             <p class="project-desc" id="p4-desc">VS Code extension that renames variables to nonsensical words. Chaos ensued.</p>
@@ -330,8 +337,8 @@
 
         <div class="card card-nekolist">
             <div class="project-header">
-                <div class="project-icon">😺</div>
-                <a href="https://github.com/ajxv/NekoList" target="_blank"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
+                <div class="project-icon" id="p5-icon">ᨐฅ</div>
+                <a href="https://github.com/ajxv/NekoList" target="_blank" rel="noopener noreferrer"><i data-feather="external-link" style="width:16px; color:var(--text-muted)"></i></a>
             </div>
             <h3 class="project-title" id="p5-title">NekoList</h3>
             <p class="project-desc" id="p5-desc">A feature-rich unofficial MyAnimeList client built with Flutter for seamless tracking.</p>
@@ -366,14 +373,19 @@
         stat2Label: "Achievements",
         p1Title: "redis-tui",
         p1Desc: "A powerful Terminal User Interface for Redis built with Go and Bubble Tea.",
-        p2Title: "NetSpeed Monitor",
+        p1Icon: "⛃", // database
+        p2Title: "netspeed-monitor",
         p2Desc: "Ubuntu GNOME extension for real-time network speed monitoring.",
+        p2Icon: "⏲", // Meter
         p3Title: "rrhfoem04-lib",
         p3Desc: "Python library for interfacing with the RRHFOEM04 RFID Reader.",
+        p3Icon: "၊၊||၊", // RFID
         p4Title: "nonsensify",
         p4Desc: "VS Code extension that renames variables to nonsensical words. Chaos ensued.",
+        p4Icon: "🗘", // replace
         p5Title: "NekoList",
-        p5Desc: "A feature-rich unofficial MyAnimeList client built with Flutter for seamless tracking."
+        p5Desc: "A feature-rich unofficial MyAnimeList client built with Flutter for seamless tracking.",
+        p5Icon: "ᨐฅ" // cat
     };
 
     // Fun Content
@@ -387,14 +399,19 @@
         stat2Label: "Certified",
         p1Title: "Redis? I hardly know her.",
         p1Desc: "A TUI that makes Redis look cool. It definitely doesn't crash... mostly.",
+        p1Icon: "🍵", // Bubble Tea
         p2Title: "Is my internet slow?",
         p2Desc: "No, it's just the server. Or maybe your ISP hates you.",
+        p2Icon: "🐌", // Snail
         p3Title: "Beep Boop",
         p3Desc: "Stealing... I mean, legitimately reading RFID cards for science.",
+        p3Icon: "🕵️", // Spy
         p4Title: "var thing = 'what?'",
         p4Desc: "I made this because naming variables 'data1' and 'data2' was getting too professional.",
+        p4Icon: "🍝", // Spaghetti Code
         p5Title: "Weeb Central",
-        p5Desc: "The only app you need to track how much time you've wasted on anime."
+        p5Desc: "The only app you need to track how much time you've wasted on anime.",
+        p5Icon: "🍙" // Rice ball
     };
 
     function toggleMode() {
@@ -411,44 +428,37 @@
             { id: 'stat-1-label', prop: 'stat1Label' },
             { id: 'stat-2-num', prop: 'stat2Num' },
             { id: 'stat-2-label', prop: 'stat2Label' },
+            
+            // Projects
             { id: 'p1-title', prop: 'p1Title' },
             { id: 'p1-desc', prop: 'p1Desc' },
+            { id: 'p1-icon', prop: 'p1Icon' },
+
             { id: 'p2-title', prop: 'p2Title' },
             { id: 'p2-desc', prop: 'p2Desc' },
+            { id: 'p2-icon', prop: 'p2Icon' },
+
             { id: 'p3-title', prop: 'p3Title' },
             { id: 'p3-desc', prop: 'p3Desc' },
+            { id: 'p3-icon', prop: 'p3Icon' },
+
             { id: 'p4-title', prop: 'p4Title' },
             { id: 'p4-desc', prop: 'p4Desc' },
+            { id: 'p4-icon', prop: 'p4Icon' },
+
             { id: 'p5-title', prop: 'p5Title' },
-            { id: 'p5-desc', prop: 'p5Desc' }
+            { id: 'p5-desc', prop: 'p5Desc' },
+            { id: 'p5-icon', prop: 'p5Icon' }
         ];
 
         if (isFunMode) {
             body.classList.add('fun-mode');
             label.innerText = "Fun Mode";
-            
-            elements.forEach(el => {
-                document.getElementById(el.id).innerText = funContent[el.prop];
-            });
-
-            // Easter egg: change icons to potatoes
-            document.querySelectorAll('.project-icon').forEach(icon => {
-                if(!icon.dataset.original) icon.dataset.original = icon.innerText;
-                icon.innerText = "🥔";
-            });
-
+            elements.forEach(el => document.getElementById(el.id).innerText = funContent[el.prop]);
         } else {
             body.classList.remove('fun-mode');
             label.innerText = "Pro Mode";
-            
-            elements.forEach(el => {
-                document.getElementById(el.id).innerText = proContent[el.prop];
-            });
-
-            // Revert Icons
-            document.querySelectorAll('.project-icon').forEach(icon => {
-                if(icon.dataset.original) icon.innerText = icon.dataset.original;
-            });
+            elements.forEach(el => document.getElementById(el.id).innerText = proContent[el.prop]);
         }
     }
 </script>
